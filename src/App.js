@@ -11,13 +11,14 @@ import EditStudent from './Pages/EditStudent';
 import DeleteStudent from './Pages/DeleteStudent';
 import StudentDashboard from './Pages/StudentDashboard';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
+import ForgotPassword from './Pages/ForgotPassword';
 
 
 function App() {
   return (
     <div className="App">    
      <Fragment>
-     {window.location.pathname === '/' || window.location.pathname === '/Login' ? null
+     {window.location.pathname === '/' || window.location.pathname === '/Login' || window.location.pathname === '/GeneratePassword'  ? null
       : <NavBar></NavBar>}
       
       <BrowserRouter>
@@ -28,6 +29,7 @@ function App() {
               <Route exact path='/Addstudent'  element={<AddStudent />}></Route>
               <Route exact path='/EditStudent'  element={<EditStudent />}></Route>
               <Route exact path='/DeleteStudent'  element={<DeleteStudent />}></Route>
+              <Route exact path='/GeneratePassword'  element={<ForgotPassword />}></Route>
           </Routes>  
       </BrowserRouter>
               
