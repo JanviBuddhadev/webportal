@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import { ConeStriped } from "react-bootstrap-icons";
 import swal from "sweetalert";
-
-class ForgotPassword extends Component {
+class UpdatePassword extends Component {
   constructor(props) {
     super(props);
     this.state = {
       Username: "",
+      Password: "",
+      OTP: "",
     };
   }
-  handleChangeUN = (e) => {
-    this.setState({ Username: e.target.value });
-  };
 
-  ForgotPassword = (e) => {
+  UpdatePassword = (e) => {
     e.preventDefault();
-    fetch("https://localhost:5001/api/accounts/Verify", {
+    fetch("https://localhost:5001/api/accounts/ResetPassword", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -23,21 +21,23 @@ class ForgotPassword extends Component {
       },
       body: JSON.stringify({
         emailAddress: this.state.Username,
+        NewPassword: this.state.Password,
+        SecretCode: this.state.OTP
       }),
     }).then((res) => {
       if (res.status == 200) {
         swal({
           title: "Success",
-          text: "Please check your email, OTP sent successfully on your registered EmailId",
+          text: "Password updated successfully!!!",
           icon: "Success",
           dangerMode: false,
         }).then(function () {
-          window.location.href = "/UpdatePassword";
+          window.location.href = "/StudentDashboard";
         });
       } else {
         swal({
           title: "ERROR",
-          text: "Your Email Id is not registered",
+          text: "Something went wrong....",
           icon: "warning",
           dangerMode: true,
         });
@@ -45,12 +45,24 @@ class ForgotPassword extends Component {
     });
   };
 
+
+
+  handleChangeUN = (e) => {
+    this.setState({ Username: e.target.value });
+  };
+  handleChangePW = (e) => {
+    this.setState({ Password: e.target.value });
+  };
+
+  handleChangeOTP = (e) => {
+    this.setState({ OTP: e.target.value });
+  };
   render() {
     return (
       <div className="Auth-form-container">
         <form className="Auth-form">
           <div className="Auth-form-content">
-            <h3 className="Auth-form-title">Verify Email</h3>
+            <h3 className="Auth-form-title">Update Password</h3>
             <div className="form-group mt-3">
               <label>Email address</label>
               <input
@@ -61,11 +73,31 @@ class ForgotPassword extends Component {
                 value={this.state.Username}
               />
             </div>
+            <div className="form-group mt-3">
+              <label>OTP</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                onChange={this.handleChangeOTP}
+                placeholder="Enter Secret Code"
+                value={this.state.OTP}
+              />
+            </div>
+            <div className="form-group mt-3">
+              <label>New Password</label>
+              <input
+                type="password"
+                className="form-control mt-1"
+                onChange={this.handleChangePW}
+                placeholder="Enter password"
+                value={this.state.Password}
+              />
+            </div>
             <div className="d-grid gap-2 mt-3">
               <button
                 type="submit"
                 className="btn btn-primary"
-                onClick={this.ForgotPassword}
+                onClick={this.UpdatePassword}
               >
                 Submit
               </button>
@@ -77,4 +109,4 @@ class ForgotPassword extends Component {
   }
 }
 
-export default ForgotPassword;
+export default UpdatePassword;

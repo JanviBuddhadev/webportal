@@ -51,38 +51,10 @@ class Login extends Component {
               } else {
                 if (this.state.IsEmailConfirmed) {
                   window.location.href = "/StudentDashboard";
-                } 
-                else 
-                {
-                  fetch("https://localhost:5001/api/accounts/verify", {
-                    method: "POST",
-                    headers: {
-                      "Content-Type": "application/json",
-                      Accept: "application/json",
-                    },
-                    body: JSON.stringify({
-                      emailAddress: this.state.Username
-                    }),
-                  }).then((res)=>{
-                    if(res.status == 200){
-                      swal({
-                        title: "Please check your email!!!",
-                        text: "OTP sent successfully on your registered EmailId",
-                        icon: "Success",
-                        dangerMode: false,
-                      });
-                      window.location.href = "/GeneratePassword";
-                    }
-                    else{
-                      swal({
-                        title: "ERROR",
-                        text: "Your Email Id is not registered",
-                        icon: "warning",
-                        dangerMode: true,
-                      });
-                    }
-                  })
-                }
+                }  
+                else{
+                  window.location.href = "/verify";
+                }              
               }
             });
           });
@@ -155,7 +127,7 @@ class Login extends Component {
               </button>
             </div>
             <p className="forgot-password text-right mt-2">
-              <a href="#">Forgot password</a>
+              <a href="/verify">Forgot password</a>
 
               {/* <a href="#" style={{ marginLeft: "10" }}>
                 Generate Password
