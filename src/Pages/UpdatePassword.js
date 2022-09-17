@@ -32,7 +32,7 @@ class UpdatePassword extends Component {
           icon: "Success",
           dangerMode: false,
         }).then(function () {
-          window.location.href = "/StudentDashboard";
+          window.location.href = "/";
         });
       } else {
         swal({

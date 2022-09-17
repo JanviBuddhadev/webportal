@@ -37,7 +37,7 @@ class ForgotPassword extends Component {
       } else {
         swal({
           title: "ERROR",
-          text: "Your Email Id is not registered",
+          text: "Error occured",
           icon: "warning",
           dangerMode: true,
         });

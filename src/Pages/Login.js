@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Check, ConeStriped } from "react-bootstrap-icons";
 import swal from "sweetalert";
+
 class Login extends Component {
   constructor(props) {
     super(props);
@@ -50,7 +51,7 @@ class Login extends Component {
                 window.location.href = "/AdminDashboard";
               } else {
                 if (this.state.IsEmailConfirmed) {
-                  window.location.href = "/StudentDashboard";
+                  window.location.href = "/StudentDashboard?email="+this.state.Username;
                 }  
                 else{
                   window.location.href = "/verify";
@@ -68,11 +69,7 @@ class Login extends Component {
         });
       }
     });
-  };
-
-  // handleOnChange = () => {
-  //   this.setState({isChecked: true});
-  // };
+  }; 
   handleChangeUN = (e) => {
     this.setState({ Username: e.target.value });
   };
@@ -105,18 +102,7 @@ class Login extends Component {
                 placeholder="Enter password"
                 value={this.state.Password}
               />
-            </div>
-            {/* <div className="isStudent">
-              <input
-                type="checkbox"
-                id="topping"
-                name="topping"
-                value="Paneer"
-                checked={this.state.isChecked}
-                onChange={this.handleOnChange}
-              />
-              First Time Login ?
-            </div> */}
+            </div>           
             <div className="d-grid gap-2 mt-3">
               <button
                 type="submit"
