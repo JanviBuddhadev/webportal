@@ -13,6 +13,7 @@ import StudentDashboard from './Pages/StudentDashboard';
 import UpdatePassword from './Pages/UpdatePassword';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import ForgotPassword from './Pages/ForgotPassword';
+import Search from './Pages/Search';
 
 
 function App() {
@@ -31,6 +32,7 @@ function App() {
               <Route exact path='/EditStudent'  element={<EditStudent />}></Route>
               <Route exact path='/DeleteStudent'  element={<DeleteStudent />}></Route>
               <Route exact path='/Verify' element={<ForgotPassword />}></Route>
+              <Route exact path='/Search' element={<Search/>} ></Route>
               <Route exact path='/UpdatePassword'  element={<UpdatePassword />}></Route>
           </Routes>  
       </BrowserRouter>

@@ -3,7 +3,6 @@ import { PersonCircle, Pencil, Trash3 } from "react-bootstrap-icons";
 import { Link } from 'react-router-dom';  
 import { Container, Card, Col, Button, Row } from "react-bootstrap";
 
-//import person from "../images/person-circle.svg";
 class AdminDashboard extends Component {
   constructor(props) {
     super(props);
