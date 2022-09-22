@@ -14,6 +14,7 @@ import UpdatePassword from './Pages/UpdatePassword';
 import { BrowserRouter, Route, Link, Routes } from 'react-router-dom';
 import ForgotPassword from './Pages/ForgotPassword';
 import Search from './Pages/Search';
+import ADNew from './Pages/ADNew';
 
 
 function App() {
@@ -26,7 +27,9 @@ function App() {
       <BrowserRouter>
         <Routes>
               <Route index element={<Login />}></Route>
-              <Route exact path='/AdminDashboard'  element={<AdminDashboard />}></Route>
+              
+              <Route exact path='/AdminDashboard'  element={<ADNew />}></Route>
+              {/* <Route exact path='/AdminDashboard'  element={<AdminDashboard />}></Route> */}
               <Route exact path='/StudentDashboard'  element={<StudentDashboard />}></Route>
               <Route exact path='/Addstudent'  element={<AddStudent />}></Route>
               <Route exact path='/EditStudent'  element={<EditStudent />}></Route>
@@ -36,8 +39,9 @@ function App() {
               <Route exact path='/UpdatePassword'  element={<UpdatePassword />}></Route>
           </Routes>  
       </BrowserRouter>
-              
-     </Fragment>
+       </Fragment>
+      
+    
 
     </div>
   );
