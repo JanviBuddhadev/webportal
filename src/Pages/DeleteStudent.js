@@ -9,7 +9,7 @@ class DeleteStudent extends Component {
     let uriId = path.split("=");
     let id = uriId[1];
     console.log(id);
-   
+
     this.state = {
       UserName: "",
       Id: "",
@@ -48,20 +48,23 @@ class DeleteStudent extends Component {
     });
   };
   DeleteStudent = () => {
-    fetch("https://localhost:5001/api/Admin/DeleteStudent?id=" + `${this.state.uid}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        // Authorization: `Bearer ${authToken}`
+    fetch(
+      "https://localhost:5001/api/Admin/DeleteStudent?id=" +
+        `${this.state.uid}`,
+      {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+          // Authorization: `Bearer ${authToken}`
+        },
       }
-    
-    }).then((res) => {
+    ).then((res) => {
       res.json().then((data) => {
         if (res.status === 201) {
           swal({
             title: "Success",
             text: "Student's details Deleted successfully!!!",
-            icon: "Success",
+            icon: "success",
             dangerMode: false,
           }).then(function () {
             window.location.href = "/AdminDashboard";
@@ -81,127 +84,121 @@ class DeleteStudent extends Component {
 
   render() {
     const defaultValue = this.state.Dob.split("T")[0]; // yyyy-mm-dd<input id="dateRequired" type="date" name="dateRequired" defaultValue={defaultValue} />
-   
-    console.log("result",defaultValue);
+    console.log("result", defaultValue);
     return (
-      <Fragment>
-        <Container style={{ border: "solid", marginTop: "15px" }}>
-          <Row>
-            <Card
-              style={{ display: "-webkit-inline-box" }}
-              className="col-lg-12 col-sm-3 col-md-6 "
-            >
-              <Card.Body>
-                <Card.Title
-                  className="justify-content-center"
-                  style={{ fontSize: 30 }}
-                >
-                  Delete Student
-                </Card.Title>
-              </Card.Body>
-            </Card>
-          </Row>
-          <Row>
-            <Card
-              style={{ display: "-webkit-inline-box" }}
-              className="col-lg-12 col-sm-3 col-md-6"
-            >
+      <div className="Auth-form-container">
+        <div
+          className="form"
+          style={{
+            overflowY: "auto",
+            maxHeight: "650px",
+            scrollbarWidth: "revert",
+          }}
+        >
+          <h4 style={{ float: "left", marginLeft: "30px" }}>Delete Student</h4>
+          <br></br>
+          <div className="form-content">
+            <div className="form-group mt-3">
               <PersonCircle
                 className="bi bi-person-circle"
-                size={200}
-                style={{ margin: 20 }}
+                size={150}
+                style={{ marginTop: 10, marginRight: 10 }}
               ></PersonCircle>
-              <Card.Body>
-                <Card.Title style={{ fontSize: 50, marginTop: 50 }}>
-                  {this.state.UserName}
-                </Card.Title>
-                <Card.Subtitle
-                  className="mb-5 text-muted"
-                  style={{ fontSize: 30 }}
-                >
-                  ID : {this.state.Id}
-                </Card.Subtitle>
-              </Card.Body>
-            </Card>
-          </Row>
-          <Row>
-          <Card
-              style={{ display: "-webkit-inline-box" }}
-              className="col-lg-12 col-sm-3 col-md-6 "
-            >
-                 <Card.Body>
-          <table  style={{margin:30, fontSize:22}}>
-            <tr>
-              <td>
-                <tr>
-                  <td style={{ width: 150 }}>Name</td>
-                  <td style={{ width: 300 }}>
-                    {" "}
-                    <input type={"text"} value={this.state.UserName} disabled></input>
-                  </td>
-                </tr>
-                <tr >
-                  <td>DOB</td>
-                  <td>
-                    <input type={"date"} value={defaultValue} disabled></input>
-                  </td>
-                </tr>
-                <tr>
-                  <td>Gender</td>
-                  <td>
-                    {" "}
-                    <input type="radio" value="Male" name="gender" checked={this.state.Gender === "Male"} disabled/> Male
-                    <input type="radio" value="Female" name="gender" style={{marginLeft:10}}  Disabled checked={this.state.Gender === "Female"}/> Female
-                    <input
-                      type="radio"
-                      value="Other"
-                      name="gender"
-                      style={{marginLeft:10}}
-                      checked={this.state.Gender === "Other"}
-                      disabled
-                    /> Other{" "}
-                  </td>
-                </tr>
-                <tr>
-                  <td>Blood Group</td>
-                  <td>
-                    <input type={"text"}  value={this.state.BloodGroup}  disabled></input>
-                  </td>
-                </tr>
-                <tr>
-                  <td>CPI</td>
-                  <td>
-                    <input type={"text"}  value={this.state.CPI} disabled></input>
-                  </td>
-                </tr>
-              </td>
 
-              <td>
-                <tr>
-                  <td style={{ width: 70 }}> Address</td>
-                  <td style={{ width: 150 }}>
-                    <textarea
-                      id="story"
-                      name="story"
-                      rows="5"
-                      cols="33"
-                      value={this.state.Address}
-                      disabled
-                    ></textarea>
-                  </td>
-                </tr>
-              </td>
-            </tr>
-            <tr>
-                <button type="button" class="btn btn-dark text-center" style={{width:100, marginLeft:450, marginTop:25}}
-                onClick={this.DeleteStudent}> Delete </button>
-            </tr>
-          </table>
-          </Card.Body>
-          </Card>
-          </Row>
-        </Container>
-      </Fragment>
+              <label
+                style={{
+                  fontSize: "50px",
+                  marginLeft: "15px",
+                  marginTop: "20px",
+                }}
+                className="Auth-form-title"
+              >
+                {this.state.UserName}
+              </label>
+            </div>
+            <div className="form-group mt-3">
+              <label>Name</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                value={this.state.UserName}
+                disabled
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>DOB</label>
+              <input
+                type={"date"}
+                className="form-control mt-1"
+                defaultValue={defaultValue}
+                disabled
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>Gender</label>
+              <br></br>
+              <input
+                type="radio"
+                value="Male"
+                name="gender"
+                disabled
+                checked={this.state.Gender === "Male"}
+              />{" "}
+              Male
+              <input
+                type="radio"
+                value="Female"
+                name="gender"
+                style={{ marginLeft: "15px" }}
+                disabled
+                checked={this.state.Gender === "Female"}
+              />{" "}
+              Female
+              <input
+                type="radio"
+                value="Other"
+                name="gender"
+                style={{ marginLeft: "15px" }}
+                checked={this.state.Gender === "Other"}
+              />{" "}
+              Other
+            </div>
+            <div className="form-group mt-3">
+              <label>Blood Group</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                value={this.state.BloodGroup}
+                disabled
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>CPI</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                value={this.state.CPI}
+                disabled
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>Address</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                value={this.state.Address}
+                disabled
+              ></input>
+            </div>
+            <div className="d-grid gap-2 mt-3">
+              {" "}
+              <button onClick={this.DeleteStudent} className="btn btn-danger">
+                Delete
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

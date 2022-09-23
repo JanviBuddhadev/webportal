@@ -16,9 +16,15 @@ class Table extends Component {
     return (
       <tr>
         <td style={{ width: "70%"}}>{this.props.obj.username}</td>
-        
+
         <td>
-          <button onClick={this.EditStudent} id={this.props.obj.userID} className="btn btn-primary">Edit</button>
+          <button
+            onClick={this.EditStudent}
+            id={this.props.obj.userID}
+            className="btn btn-primary"
+          >
+            Edit
+          </button>
         </td>
         <td>
           <button

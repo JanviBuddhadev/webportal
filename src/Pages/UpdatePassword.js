@@ -59,7 +59,7 @@ class UpdatePassword extends Component {
   };
   render() {
     return (
-      <div className="Auth-form-container">
+      <div className="Auth-form-container" style={{ height: "100vh" }}>
         <form className="Auth-form">
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Update Password</h3>

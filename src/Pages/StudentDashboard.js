@@ -40,105 +40,122 @@ class StudentDashboard extends Component {
     });
   };
   render() {
+    const defaultValue = this.state.Dob.split("T")[0]; // yyyy-mm-dd<input id="dateRequired" type="date" name="dateRequired" defaultValue={defaultValue} />
+    console.log("result", defaultValue);
     return (
-      <Fragment>
-        <Container style={{ border: "solid", marginTop: "15px" }}>
-          <Row>
-            <Card
-              style={{ display: "-webkit-inline-box" }}
-              className="col-lg-12 col-sm-3 col-md-6 "
-            >
+      <div className="Auth-form-container">
+        <div
+          className="form"
+          style={{
+            overflowY: "auto",
+            maxHeight: "600px",
+            scrollbarWidth: "revert",
+          }}
+        >
+          <h4 style={{ float: "left", marginLeft: "30px" }}> Student Management Portal </h4>
+          <br></br>
+          <div className="form-content">
+            <div className="form-group mt-3">
               <PersonCircle
                 className="bi bi-person-circle"
-                size={200}
-                style={{ margin: 20 }}
+                size={150}
+                style={{ marginTop: 10, marginRight: 10 }}
               ></PersonCircle>
-              <Card.Body>
-                <Card.Title style={{ fontSize: 50, marginTop: 50 }}>
-                  {this.state.UserName}
-                </Card.Title>
-                <Card.Subtitle
-                  className="mb-5 text-muted"
-                  style={{ fontSize: 30 }}
-                >
-                 ID:{this.state.Id}
-                </Card.Subtitle>
-              </Card.Body>
-            </Card>
-          </Row>
 
-          <Row>
-            <table style={{ margin: 30, fontSize: 22 }}>
-              <tr>
-                <td>
-                  <tr>
-                    <td style={{ width: 150 }}>Name</td>
-                    <td style={{ width: 300 }}>
-                      {" "}
-                      <input type={"text"} value={this.state.UserName}></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>DOB</td>
-                    <td>
-                      <input type={"date"} value={this.state.Dob}></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Gender</td>
-                    <td>
-                      {" "}
-                      <input type="radio" value="Male" name={this.state.Gender} /> Male
-                      <input
-                        type="radio"
-                        value="Female"
-                        name="gender"
-                        checked
-                        style={{ marginLeft: 10 }}
-                      />{" "}
-                      Female
-                      <input
-                        type="radio"
-                        value="Other"
-                        name="gender"
-                        style={{ marginLeft: 10 }}
-                      />{" "}
-                      Other{" "}
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>Blood Group</td>
-                    <td>
-                      <input type={"text"} value={this.state.BloodGroup}></input>
-                    </td>
-                  </tr>
-                  <tr>
-                    <td>CPI</td>
-                    <td>
-                      <input type={"text"} value={this.state.CPI}></input>
-                    </td>
-                  </tr>
-                </td>
-
-                <td>
-                  <tr>
-                    <td style={{ width: 70 }}> Address</td>
-                    <td style={{ width: 150 }}>
-                      <textarea
-                        id="story"
-                        name="story"
-                        rows="5"
-                        cols="33"
-                        value={this.state.Address}
-                      ></textarea>
-                    </td>
-                  </tr>
-                </td>
-              </tr>
-            </table>
-          </Row>
-        </Container>
-      </Fragment>
+              <label
+                style={{
+                  fontSize: "50px",
+                  marginLeft: "15px",
+                  marginTop: "20px",
+                }}
+                className="Auth-form-title"
+              >
+                {this.state.UserName}
+              </label>
+            </div>
+            <div className="form-group mt-3">
+              <label>Name</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                value={this.state.UserName}
+                disabled
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>DOB</label>
+              <input
+                type={"date"}
+                className="form-control mt-1"
+                defaultValue={defaultValue}
+                disabled
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>Gender</label>
+              <br></br>
+              <input
+                type="radio"
+                value="Male"
+                name="gender"
+                disabled
+                checked={this.state.Gender === "Male"}
+              />{" "}
+              Male
+              <input
+                type="radio"
+                value="Female"
+                name="gender"
+                style={{ marginLeft: "15px" }}
+                disabled
+                checked={this.state.Gender === "Female"}
+              />{" "}
+              Female
+              <input
+                type="radio"
+                value="Other"
+                name="gender"
+                style={{ marginLeft: "15px" }}
+                checked={this.state.Gender === "Other"}
+              />{" "}
+              Other
+            </div>
+            <div className="form-group mt-3">
+              <label>Blood Group</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                value={this.state.BloodGroup}
+                disabled
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>CPI</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                value={this.state.CPI}
+                disabled
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>Address</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                value={this.state.Address}
+                disabled
+              ></input>
+            </div>
+            <div className="d-grid gap-2 mt-3">
+              {" "}
+              <label>
+                TO UPDATE ANY INFOMATION KINDLY MAIL TO : studentportal@gmail.com
+              </label>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }

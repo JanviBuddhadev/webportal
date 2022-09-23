@@ -79,7 +79,7 @@ class Login extends Component {
 
   render() {
     return (
-      <div className="Auth-form-container">
+      <div className="Auth-form-container" style={{ height: "100vh" }}>
         <form className="Auth-form">
           <div className="Auth-form-content">
             <h3 className="Auth-form-title">Log In</h3>
@@ -115,9 +115,6 @@ class Login extends Component {
             <p className="forgot-password text-right mt-2">
               <a href="/verify">Forgot password</a>
 
-              {/* <a href="#" style={{ marginLeft: "10" }}>
-                Generate Password
-              </a> */}
             </p>
           </div>
         </form>

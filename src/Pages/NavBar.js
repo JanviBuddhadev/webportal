@@ -28,21 +28,21 @@ const Search=(e)=>{
 }
 
   return (
-    <nav class="navbar bg-light">
-      <div class="container-fluid">
-        <a class="navbar-brand">Student Managment Portal</a>
-        <form class="d-flex" role="search">
+    <nav className="navbar bg-light">
+      <div className="container-fluid">
+        <a className="navbar-brand">Student Managment Portal</a>
+        <form className="d-flex" role="search">
           <input
-            class="form-control me-2"
+            className="form-control me-2"
             type="search"
             onChange={onchangeHandler}
             placeholder="Search"
             aria-label="Search"
           ></input>
-          <button class="btn btn-outline-dark" type="submit" onClick={Search} >
+          <button className="btn btn-outline-dark" type="submit" onClick={Search} >
             Search
           </button>
-          <button class="btn btn-outline-danger" style={{marginLeft:20}} type="submit" onClick={LogOut}>
+          <button className="btn btn-outline-danger" style={{marginLeft:20}} type="submit" onClick={LogOut}>
             Logout
           </button>
         </form>

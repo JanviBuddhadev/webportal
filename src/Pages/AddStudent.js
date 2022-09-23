@@ -68,13 +68,13 @@ class AddStudent extends Component {
       BloodGroup: e.target.value,
     });
   };
-  handleChangeEmail =(e)=>{
+  handleChangeEmail = (e) => {
     this.setState({
       Email: e.target.value,
     });
-  }
+  };
   AddStudent = (e) => {
-    fetch("https://localhost:5001/api/Admin/Register" , {
+    fetch("https://localhost:5001/api/Admin/Register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -86,7 +86,7 @@ class AddStudent extends Component {
         Address: this.state.Address,
         Gender: this.state.Gender,
         UserName: this.state.UserName,
-        Email:this.state.Email
+        Email: this.state.Email,
       }),
     }).then((res) => {
       res.json().then((data) => {
@@ -95,20 +95,20 @@ class AddStudent extends Component {
           swal({
             title: "Success",
             text: "Student Added successfully!!",
-            icon: "Success",
+            icon: "success",
             dangerMode: false,
           }).then(function () {
-            fetch("https://localhost:5001/api/accounts/AssignRole" , {
+            fetch("https://localhost:5001/api/accounts/AssignRole", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify({
-                "userId": data.message[0].split(":")[1],
-                "roleName": "Student"
+                userId: data.message[0].split(":")[1],
+                roleName: "Student",
               }),
             }).then((res) => {
-             console.log(res);
+              console.log(res);
             });
             window.location.href = "/AdminDashboard";
           });
@@ -126,147 +126,119 @@ class AddStudent extends Component {
   };
   render() {
     return (
-      <Fragment>
-        <Container style={{ border: "solid", marginTop: "15px" }}>
-          <Row>
-            <Card
-              style={{ display: "-webkit-inline-box" }}
-              className="col-lg-12 col-sm-3 col-md-6 "
-            >
-              <Card.Body>
-                <Card.Title
-                  className="justify-content-center"
-                  style={{ fontSize: 30 }}
-                >
-                  Add Student
-                </Card.Title>
-              </Card.Body>
-            </Card>
-          </Row>
-          <Row>
-            <Card
-              style={{ display: "-webkit-inline-box" }}
-              className="col-lg-12 col-sm-3 col-md-6"
-            >
+      <div className="Auth-form-container">
+        <div className="form" style={{overflowY: 'auto', maxHeight: '650px', scrollbarWidth: 'revert'}}>
+          <div className="form-content">
+            <div className="form-group mt-3">
               <PersonCircle
                 className="bi bi-person-circle"
-                size={200}
-                style={{ margin: 20 }}
+                size={150}
+                style={{ marginTop: 10, marginRight: 10 }}
               ></PersonCircle>
-              <Card.Body>
-                <Card.Title style={{ fontSize: 50, marginTop: 50 }}>
-                  {this.state.AdminUserName}
-                </Card.Title>
-                <Card.Subtitle
-                  className="mb-5 text-muted"
-                  style={{ fontSize: 30 }}
-                >
-                  ID : {this.state.AdminId}
-                </Card.Subtitle>
-              </Card.Body>
-            </Card>
-          </Row>
-          <Row>
-            <Card
-              style={{ display: "-webkit-inline-box" }}
-              className="col-lg-12 col-sm-3 col-md-6 "
-            >
-              <Card.Body>
-                <table style={{ margin: 30, fontSize: 22 }}>
-                  <tr>
-                    <td>
-                      <tr>
-                        <td style={{ width: 150 }}>Name</td>
-                        <td style={{ width: 300 }}>
-                          {" "}
-                          <input type={"text"} placeholder="Enter UserName"
-                            onChange={this.handleChangeUN}></input>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td style={{ width: 150 }}>Email</td>
-                        <td style={{ width: 300 }}>
-                          {" "}
-                          <input type={"text"}  placeholder="Enter Email"
-                            onChange={this.handleChangeEmail}></input>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>DOB</td>
-                        <td>
-                          <input type={"date"} 
-                            onChange={this.handleChangeDOB}></input>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Gender</td>
-                        <td>
-                          {" "}
-                          <input type="radio" value="Male" name="gender" onChange={this.handleChangeGender}/> Male
-                          <input
-                            type="radio"
-                            value="Female"
-                            name="gender"
-                            style={{ marginLeft: 10 }}
-                            onChange={this.handleChangeGender}
-                          />{" "}
-                          Female
-                          <input
-                            type="radio"
-                            value="Other"
-                            name="gender"
-                            style={{ marginLeft: 10 }}
-                            onChange={this.handleChangeGender}
-                          />{" "}
-                          Other{" "}
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>Blood Group</td>
-                        <td>
-                          <input type={"text"} onChange={this.handleChangeBloodgroup} placeholder="Enter BloodGroup"></input>
-                        </td>
-                      </tr>
-                      <tr>
-                        <td>CPI</td>
-                        <td>
-                          <input type={"text"} onChange={this.handleChangeCpi} placeholder="Enter CPI"></input>
-                        </td>
-                      </tr>
-                    </td>
 
-                    <td>
-                      <tr>
-                        <td style={{ width: 70 }}> Address</td>
-                        <td style={{ width: 150 }}>
-                          <textarea
-                            id="story"
-                            name="story"
-                            rows="5"
-                            cols="33"
-                            onChange={this.handleChangeAddress} placeholder="Enter Address"
-                          ></textarea>
-                        </td>
-                      </tr>
-                    </td>
-                  </tr>
-                  <tr>
-                    <button
-                      type="button"
-                      class="btn btn-outline-dark text-center"
-                      onClick={this.AddStudent}
-                      style={{ width: 100, marginLeft: 450, marginTop: 25 }}
-                    >
-                      {" "}
-                      Submit{" "}
-                    </button>
-                  </tr>
-                </table>
-              </Card.Body>
-            </Card>
-          </Row>
-        </Container>
-      </Fragment>
+              <label
+                style={{
+                  fontSize: "50px",
+                  marginLeft: "15px",
+                  marginTop: "20px",
+                }}
+                className="Auth-form-title"
+              >
+                {this.state.AdminUserName}
+              </label>
+            </div>
+            <div className="form-group mt-3">
+              <label>Name</label>
+              <input
+                type={"text"}
+                placeholder="Enter UserName"
+                className="form-control mt-1"
+                onChange={this.handleChangeUN}
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>Email</label>
+              <input
+                type="email"
+                placeholder="Enter Email Id"
+                className="form-control mt-1"
+                onChange={this.handleChangeEmail}
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>DOB</label>
+              <input
+                type={"date"}
+                className="form-control mt-1"
+                onChange={this.handleChangeDOB}
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>Gender</label>
+              <br></br>
+              <input
+                type="radio"
+                value="Male"
+                name="gender"
+                onChange={this.handleChangeGender}
+                checked={this.state.Gender === "Male"}
+              />{" "}
+              Male
+              <input
+                type="radio"
+                value="Female"
+                name="gender"
+                style={{ marginLeft: "15px" }}
+                onChange={this.handleChangeGender}
+                checked={this.state.Gender === "Female"}
+              />{" "}
+              Female
+              <input
+                type="radio"
+                value="Other"
+                name="gender"
+                style={{ marginLeft: "15px" }}
+                checked={this.state.Gender === "Other"}
+                onChange={this.handleChangeGender}
+              />{" "}
+              Other
+            </div>
+            <div className="form-group mt-3">
+              <label>Blood Group</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                onChange={this.handleChangeBloodgroup}
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>CPI</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                onChange={this.handleChangeCpi}
+              ></input>
+            </div>
+            <div className="form-group mt-3">
+              <label>Address</label>
+              <input
+                type="text"
+                className="form-control mt-1"
+                onChange={this.handleChangeAddress}
+              ></input>
+            </div>
+            <div className="d-grid gap-2 mt-3">
+              {" "}
+              <button
+                onClick={this.AddStudent}
+                className="btn btn-primary"
+              >
+                Add Student
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
     );
   }
 }
