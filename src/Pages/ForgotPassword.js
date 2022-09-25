@@ -29,7 +29,7 @@ class ForgotPassword extends Component {
         swal({
           title: "Success",
           text: "Please check your email, OTP sent successfully on your registered EmailId",
-          icon: "Success",
+          icon: "success",
           dangerMode: false,
         }).then(function () {
           window.location.href = "/UpdatePassword";

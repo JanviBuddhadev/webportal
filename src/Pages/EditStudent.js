@@ -85,7 +85,7 @@ class EditStudent extends Component {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
-        // Authorization: `Bearer ${authToken}`
+        Authorization: `Bearer ${this.state.authToken}`,
       },
       body: JSON.stringify({
         Dob: this.state.Dob,
@@ -120,122 +120,134 @@ class EditStudent extends Component {
   };
 
   render() {
-    const defaultValue = this.state.Dob.split("T")[0]; // yyyy-mm-dd<input id="dateRequired" type="date" name="dateRequired" defaultValue={defaultValue} />
-
-    console.log("result", defaultValue);
-    return (
-      <div className="Auth-form-container">
-        <div className="form" style={{overflowY: 'auto', maxHeight: '650px', scrollbarWidth: 'revert'}}>
-          <h4 style={{ float: "left", marginLeft: "30px" }}>
-            Update Student Details
-          </h4>
-          <br></br>
-          <div className="form-content">
-            <div className="form-group mt-3">
-              <PersonCircle
-                className="bi bi-person-circle"
-                size={150}
-                style={{ marginTop: 10, marginRight: 10 }}
-              ></PersonCircle>
-
-              <label
-                style={{
-                  fontSize: "50px",
-                  marginLeft: "15px",
-                  marginTop: "20px",
-                }}
-                className="Auth-form-title"
-              >
-                {this.state.UserName}
-              </label>
-            </div>
-            <div className="form-group mt-3">
-              <label>Name</label>
-              <input
-                type="text"
-                className="form-control mt-1"
-                value={this.state.UserName}
-                onChange={this.handleChangeUN}
-                disabled
-              ></input>
-            </div>
-            <div className="form-group mt-3">
-              <label>DOB</label>
-              <input
-                type={"date"}
-                className="form-control mt-1"
-                defaultValue={defaultValue}
-                onChange={this.handleChangeDOB}
-              ></input>
-            </div>
-            <div className="form-group mt-3">
-              <label>Gender</label>
-              <br></br>
-              <input
-                type="radio"
-                value="Male"
-                name="gender"
-                onChange={this.handleChangeGender}
-                checked={this.state.Gender === "Male"}
-              />{" "}
-              Male
-              <input
-                type="radio"
-                value="Female"
-                name="gender"
-                style={{ marginLeft: "15px" }}
-                onChange={this.handleChangeGender}
-                checked={this.state.Gender === "Female"}
-              />{" "}
-              Female
-              <input
-                type="radio"
-                value="Other"
-                name="gender"
-                style={{ marginLeft: "15px" }}
-                checked={this.state.Gender === "Other"}
-                onChange={this.handleChangeGender}
-              />{" "}
-              Other
-            </div>
-            <div className="form-group mt-3">
-              <label>Blood Group</label>
-              <input
-                type="text"
-                className="form-control mt-1"
-                value={this.state.BloodGroup}
-                onChange={this.handleChangeBloodgroup}
-              ></input>
-            </div>
-            <div className="form-group mt-3">
-              <label>CPI</label>
-              <input
-                type="text"
-                className="form-control mt-1"
-                value={this.state.CPI}
-                onChange={this.handleChangeCpi}
-              ></input>
-            </div>
-            <div className="form-group mt-3">
-              <label>Address</label>
-              <input
-                type="text"
-                className="form-control mt-1"
-                value={this.state.Address}
-                onChange={this.handleChangeAddress}
-              ></input>
-            </div>
-           <div className="d-grid gap-2 mt-3"> <button
-            onClick={this.UpdateStudentDetails}
-            
-            className="btn btn-primary"
+    if (this.state.authToken) {
+      const defaultValue = this.state.Dob.split("T")[0]; // yyyy-mm-dd<input id="dateRequired" type="date" name="dateRequired" defaultValue={defaultValue} />
+      console.log("result", defaultValue);
+      return (
+        <div className="Auth-form-container">
+          <div
+            className="form"
+            style={{
+              overflowY: "auto",
+              maxHeight: "650px",
+              scrollbarWidth: "revert",
+            }}
           >
-            Update
-          </button></div>
+            <h4 style={{ float: "left", marginLeft: "30px" }}>
+              Update Student Details
+            </h4>
+            <br></br>
+            <div className="form-content">
+              <div className="form-group mt-3">
+                <PersonCircle
+                  className="bi bi-person-circle"
+                  size={150}
+                  style={{ marginTop: 10, marginRight: 10 }}
+                ></PersonCircle>
+
+                <label
+                  style={{
+                    fontSize: "50px",
+                    marginLeft: "15px",
+                    marginTop: "20px",
+                  }}
+                  className="Auth-form-title"
+                >
+                  {this.state.UserName}
+                </label>
+              </div>
+              <div className="form-group mt-3">
+                <label>Name</label>
+                <input
+                  type="text"
+                  className="form-control mt-1"
+                  value={this.state.UserName}
+                  onChange={this.handleChangeUN}
+                  disabled
+                ></input>
+              </div>
+              <div className="form-group mt-3">
+                <label>DOB</label>
+                <input
+                  type={"date"}
+                  className="form-control mt-1"
+                  defaultValue={defaultValue}
+                  onChange={this.handleChangeDOB}
+                ></input>
+              </div>
+              <div className="form-group mt-3">
+                <label>Gender</label>
+                <br></br>
+                <input
+                  type="radio"
+                  value="Male"
+                  name="gender"
+                  onChange={this.handleChangeGender}
+                  checked={this.state.Gender === "Male"}
+                />{" "}
+                Male
+                <input
+                  type="radio"
+                  value="Female"
+                  name="gender"
+                  style={{ marginLeft: "15px" }}
+                  onChange={this.handleChangeGender}
+                  checked={this.state.Gender === "Female"}
+                />{" "}
+                Female
+                <input
+                  type="radio"
+                  value="Other"
+                  name="gender"
+                  style={{ marginLeft: "15px" }}
+                  checked={this.state.Gender === "Other"}
+                  onChange={this.handleChangeGender}
+                />{" "}
+                Other
+              </div>
+              <div className="form-group mt-3">
+                <label>Blood Group</label>
+                <input
+                  type="text"
+                  className="form-control mt-1"
+                  value={this.state.BloodGroup}
+                  onChange={this.handleChangeBloodgroup}
+                ></input>
+              </div>
+              <div className="form-group mt-3">
+                <label>CPI</label>
+                <input
+                  type="text"
+                  className="form-control mt-1"
+                  value={this.state.CPI}
+                  onChange={this.handleChangeCpi}
+                ></input>
+              </div>
+              <div className="form-group mt-3">
+                <label>Address</label>
+                <input
+                  type="text"
+                  className="form-control mt-1"
+                  value={this.state.Address}
+                  onChange={this.handleChangeAddress}
+                ></input>
+              </div>
+              <div className="d-grid gap-2 mt-3">
+                {" "}
+                <button
+                  onClick={this.UpdateStudentDetails}
+                  className="btn btn-primary"
+                >
+                  Update
+                </button>
+              </div>
+            </div>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      window.location.href = "/";
+    }
   }
 }
 

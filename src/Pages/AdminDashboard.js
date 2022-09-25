@@ -1,6 +1,5 @@
 import React, { Component, Fragment } from "react";
-import { PersonCircle, Pencil, Trash3 } from "react-bootstrap-icons";
-import { Container, Card, Row } from "react-bootstrap";
+import { PersonCircle } from "react-bootstrap-icons";
 import Table from "./Table";
 
 class AdminDashboard extends Component {
@@ -70,52 +69,56 @@ class AdminDashboard extends Component {
   };
 
   render() {
-    return (
-      <div className="Auth-form-container">
-        <div className="form">
-          <div className="form-content">
-            <div className="form-group mt-3">
-              <PersonCircle
-                className="bi bi-person-circle"
-                size={150}
-                style={{ marginTop: 10, marginRight: 10 }}
-              ></PersonCircle>
+    if (this.state.authToken) {
+      return (
+        <div className="Auth-form-container">
+          <div className="form">
+            <div className="form-content">
+              <div className="form-group mt-3">
+                <PersonCircle
+                  className="bi bi-person-circle"
+                  size={150}
+                  style={{ marginTop: 10, marginRight: 10 }}
+                ></PersonCircle>
 
-              <label
-                style={{
-                  fontSize: "50px",
-                  marginLeft: "15px",
-                  marginTop: "20px",
-                }}
-                className="Auth-form-title"
-              >
-                {this.state.UserName}
-              </label>
-            </div>
+                <label
+                  style={{
+                    fontSize: "50px",
+                    marginLeft: "15px",
+                    marginTop: "20px",
+                  }}
+                  className="Auth-form-title"
+                >
+                  {this.state.UserName}
+                </label>
+              </div>
 
-            <div className="form-group mt-3">
-              <button
-                onClick={this.AddStudent}
-                type="button"
-                className="btn btn-dark text-end"
-                style={{
-                  marginTop: 10,
-                  marginBottom: 10,
-                  marginRight: 10,
-                  float: "right",
-                }}
-              >
-                Add Student
-              </button>
+              <div className="form-group mt-3">
+                <button
+                  onClick={this.AddStudent}
+                  type="button"
+                  className="btn btn-dark text-end"
+                  style={{
+                    marginTop: 10,
+                    marginBottom: 10,
+                    marginRight: 10,
+                    float: "right",
+                  }}
+                >
+                  Add Student
+                </button>
+              </div>
+              <table className="table table-striped" style={{ marginTop: 10 }}>
+                <thead></thead>
+                <tbody>{this.tabRow()}</tbody>
+              </table>
             </div>
-            <table className="table table-striped" style={{ marginTop: 10 }}>
-              <thead></thead>
-              <tbody>{this.tabRow()}</tbody>
-            </table>
           </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      window.location.href = "/";
+    }
   }
 }
 

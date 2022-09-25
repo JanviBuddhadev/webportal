@@ -47,7 +47,8 @@ class Login extends Component {
             }
           ).then((res) => {
             res.json().then((data) => {
-              if (data === "Admin") {
+              console.log(data);
+              if (data == 'Admin') {
                 window.location.href = "/AdminDashboard";
               } else {
                 if (this.state.IsEmailConfirmed) {

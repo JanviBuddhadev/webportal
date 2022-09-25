@@ -29,7 +29,7 @@ class UpdatePassword extends Component {
         swal({
           title: "Success",
           text: "Password updated successfully!!!",
-          icon: "Success",
+          icon: "success",
           dangerMode: false,
         }).then(function () {
           window.location.href = "/";

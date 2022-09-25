@@ -13,6 +13,7 @@ class Search extends Component {
     this.state = {
       ID: id,
       students: [""],
+      authToken: localStorage.getItem("authToken"),
     };
   }
   tabRow() {
@@ -28,7 +29,7 @@ class Search extends Component {
     window.location.href = "/EditStudent?id=" + event.target.id;
   };
   componentDidMount = (e) => {
-    console.log(this.state.ID); 
+    console.log(this.state.ID);
     fetch("https://localhost:5001/api/accounts/Search/" + `${this.state.ID}`, {
       method: "GET",
       headers: {
@@ -39,7 +40,7 @@ class Search extends Component {
         console.log("data: ");
         console.log(data);
         this.setState({
-          students: data
+          students: data,
         });
         console.log("Api Response", data);
         console.log("Student state Response", this.state.students);
@@ -48,16 +49,20 @@ class Search extends Component {
   };
 
   render() {
-    return (
-      <div className="Auth-form-container">
-        <div className="form">
-          <h4 align="center">Search Result</h4>
-          <table className="table table-striped" style={{ marginTop: 10 }}>
-            <tbody>{this.tabRow()}</tbody>
-          </table>
+    if (this.state.authToken) {
+      return (
+        <div className="Auth-form-container">
+          <div className="form">
+            <h4 align="center">Search Result</h4>
+            <table className="table table-striped" style={{ marginTop: 10 }}>
+              <tbody>{this.tabRow()}</tbody>
+            </table>
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      window.location.href = "/";
+    }
   }
 }
 
